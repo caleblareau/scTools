@@ -2,9 +2,9 @@
 % Please edit documentation in R/RcppExports.R
 \name{calcKNNgraph}
 \alias{calcKNNgraph}
-\title{Calculate k Nearest Neighbors from some distance metric}
+\title{Calculate k Nearest Neighbors from Euclidean distance metric}
 \usage{
-calcKNNgraph(x, k)
+calcKNNgraph(x, k = 1L)
 }
 \arguments{
 \item{x}{An m x n numeric matrix}

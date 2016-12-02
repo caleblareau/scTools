@@ -6,7 +6,7 @@
 using namespace Rcpp;
 
 // calcKNNgraph
-NumericMatrix calcKNNgraph(NumericMatrix x, int k);
+IntegerMatrix calcKNNgraph(NumericMatrix x, int k);
 RcppExport SEXP scTools_calcKNNgraph(SEXP xSEXP, SEXP kSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
