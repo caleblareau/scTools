@@ -5,15 +5,27 @@
 
 using namespace Rcpp;
 
-// calcKNNgraph
-IntegerMatrix calcKNNgraph(NumericMatrix x, int k);
-RcppExport SEXP scTools_calcKNNgraph(SEXP xSEXP, SEXP kSEXP) {
+// calcKNNgraph_pearson
+IntegerMatrix calcKNNgraph_pearson(NumericMatrix x, int k);
+RcppExport SEXP scTools_calcKNNgraph_pearson(SEXP xSEXP, SEXP kSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
-    rcpp_result_gen = Rcpp::wrap(calcKNNgraph(x, k));
+    rcpp_result_gen = Rcpp::wrap(calcKNNgraph_pearson(x, k));
+    return rcpp_result_gen;
+END_RCPP
+}
+// calcKNNgraph_euclidean
+IntegerMatrix calcKNNgraph_euclidean(NumericMatrix x, int k);
+RcppExport SEXP scTools_calcKNNgraph_euclidean(SEXP xSEXP, SEXP kSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
+    Rcpp::traits::input_parameter< int >::type k(kSEXP);
+    rcpp_result_gen = Rcpp::wrap(calcKNNgraph_euclidean(x, k));
     return rcpp_result_gen;
 END_RCPP
 }

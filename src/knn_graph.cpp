@@ -127,11 +127,11 @@ IntegerVector top_index(SEXP x, int n) {
     return IntegerVector() ; // not used
 }
 
-//' Calculate k Nearest Neighbors from Euclidean distance metric
+//' Calculate k Nearest Neighbors from variable distance metric
 //'
-//' This function returns a logical vector identifying if
-//' there are leading NA, marking the leadings NA as TRUE and
-//' everything else as FALSE.
+//' Each distance metric has its own function for speed/efficiency
+//' This takes a sample X feature matrix and returns
+//' a matrix of k nearest neighbors
 //'
 //' @param x An m x n numeric matrix
 //' @param k The number of nearest neighbors to return
@@ -140,7 +140,31 @@ IntegerVector top_index(SEXP x, int n) {
 //' nearest neighbors for the specified row.
 //' @export
 // [[Rcpp::export]]
-IntegerMatrix calcKNNgraph (NumericMatrix x, int k = 1){
+IntegerMatrix calcKNNgraph_pearson (NumericMatrix x, int k = 1){
+  int outrows = x.nrow();
+  int outcols = k;
+  IntegerMatrix out(outrows,outcols);
+
+  for (int i = 0 ; i < outrows; i++){
+    NumericVector xx(outrows);
+    for (int j = 0 ; j < outrows; j ++) {
+      NumericVector v1 = x.row(i);
+      NumericVector v2 = x.row(j);
+      double d = pearson_dist(v1, v2);
+      xx(j) = (-1) * d; // To get biggest values
+    }
+    IntegerVector ti = top_index(xx, k);
+    for (int p = 0 ; p < k; p ++){
+      out(i,p) = ti(k-p-1);
+    }
+  }
+  return out;
+}
+
+// @describeIn calcKNNgraph_pearson Euclidean distance Implementation
+//' @export
+// [[Rcpp::export]]
+IntegerMatrix calcKNNgraph_euclidean (NumericMatrix x, int k = 1){
   int outrows = x.nrow();
   int outcols = k;
   IntegerMatrix out(outrows,outcols);

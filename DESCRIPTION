@@ -9,7 +9,9 @@ Authors@R: c(
 Maintainer: Caleb Lareau <caleblareau@g.harvard.edu>
 Author: Caleb Lareau [aut, cre]
 Description: Functions that need a home.
-Imports: Rcpp (>= 0.12.8)
+Imports:
+    igraph,
+    Rcpp (>= 0.12.8)
 License: MIT + file LICENSE
 LazyData: TRUE
 Suggests:
@@ -19,3 +21,7 @@ Suggests:
 VignetteBuilder: knitr
 RoxygenNote: 5.0.1
 LinkingTo: Rcpp
+Collate:
+    'RcppExports.R'
+    'scTools.R'
+    'knnGraph.R'
