@@ -10,6 +10,7 @@ Maintainer: Caleb Lareau <caleblareau@g.harvard.edu>
 Author: Caleb Lareau [aut, cre]
 Description: Functions that need a home.
 Imports:
+    methods,
     igraph,
     Rcpp (>= 0.12.8)
 License: MIT + file LICENSE

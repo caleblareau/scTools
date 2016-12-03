@@ -127,17 +127,18 @@ IntegerVector top_index(SEXP x, int n) {
     return IntegerVector() ; // not used
 }
 
-//' Calculate k Nearest Neighbors from variable distance metric
+//' Calculate k Nearest Neighbors from Pearson distance metric
 //'
 //' Each distance metric has its own function for speed/efficiency
 //' This takes a sample X feature matrix and returns
-//' a matrix of k nearest neighbors
+//' a matrix of k nearest neighbors. This is the one for Pearson.
 //'
 //' @param x An m x n numeric matrix
 //' @param k The number of nearest neighbors to return
 //' per sample
 //' @return An m x k matrix of indicies 1...k of the
-//' nearest neighbors for the specified row.
+//' nearest neighbors for the specified row based on
+//' Pearson distance.
 //' @export
 // [[Rcpp::export]]
 IntegerMatrix calcKNNgraph_pearson (NumericMatrix x, int k = 1){
@@ -161,7 +162,19 @@ IntegerMatrix calcKNNgraph_pearson (NumericMatrix x, int k = 1){
   return out;
 }
 
-// @describeIn calcKNNgraph_pearson Euclidean distance Implementation
+
+//' Calculate k Nearest Neighbors from Euclidean distance metric
+//'
+//' Each distance metric has its own function for speed/efficiency
+//' This takes a sample X feature matrix and returns
+//' a matrix of k nearest neighbors. This is the one for Euclidean.
+//'
+//' @param x An m x n numeric matrix
+//' @param k The number of nearest neighbors to return
+//' per sample
+//' @return An m x k matrix of indicies 1...k of the
+//' nearest neighbors for the specified row based on
+//' Euclidean distance.
 //' @export
 // [[Rcpp::export]]
 IntegerMatrix calcKNNgraph_euclidean (NumericMatrix x, int k = 1){
