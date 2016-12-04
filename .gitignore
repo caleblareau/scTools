@@ -32,3 +32,7 @@ vignettes/*.pdf
 *.utf8.md
 *.knit.md
 .Rproj.user
+
+# Compiled Cpp attributes
+src/*.o
+src/*.so
